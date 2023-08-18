@@ -17,11 +17,11 @@ layout: default
 
 从整个结构来看，XNode是简单而清晰的。其针对图，节点，端口三个概念进行了包装和处理，并没有给与这些概念过多的逻辑结构，这是很好的一点。而这些元素也精确的落实在了图表示上面，XNode的结点图可视化如下：
 
-<center> <img src="01.assets/p1.png"></center>
+<center> <img src="../01.assets/p1.png"></center>
 
 先看一下其整个结构部分：
 
-<center> <img src="01.assets/d1.drawio.png"></center>
+<center> <img src="../01.assets/d1.drawio.png"></center>
 
 
 
@@ -81,7 +81,7 @@ public static class NodeDataCache {
 
 然后当发生新的节点创建的时候，会触发重新构建cache的操作，简单流程如下：
 
-<center> <img src="01.assets/d2.drawio.png"></center>
+<center> <img src="../01.assets/d2.drawio.png"></center>
 
 最后就是形成一个类型--节点端口的映射表。而这个映射表结构就是用来构建可视化Node节点UI结构的基础。
 
@@ -94,7 +94,7 @@ public static class NodeDataCache {
 而这就涉及到整个编辑器侧的架构，编辑表现跟逻辑分离，之间只有编辑器数据部分是相互关联的。整个结构图如下：
 
 
-<center> <img src="01.assets/d3.drawio.png"></center>
+<center> <img src="../01.assets/d3.drawio.png"></center>
 
 
 简单来说跟HighLevel想法对应。即NodeGraphEditor跟开发者关心的目标数据层NodeGraph结构关联。NodeEditor则跟数据层的Node关联。两个Editor类型提供编辑侧的绘制工作，以及借用Unity的属性反射结构，生成对应的属性Property的编辑窗口，进而可以编辑属性并且落地到数据层上去。
@@ -103,7 +103,7 @@ public static class NodeDataCache {
 
 **<font size = 4> 添加节点 </font>**
 
-<center> <img src="01.assets/d4.drawio.png"></center>
+<center> <img src="../01.assets/d4.drawio.png"></center>
 
 添加节点一般通过在节点图中右键来打开一个菜单栏实现。
 其调用过程就如上图：
@@ -126,7 +126,7 @@ public static class NodeDataCache {
 
 其中我们可能更为关心的是对于节点内结构的绘制。其结构即是，便利类对象的属性列表，如果其可见遍调用NodeEditorGUILayout将其绘制出来。
 
-<center> <img src="01.assets/d5.drawio.png"></center>
+<center> <img src="../01.assets/d5.drawio.png"></center>
 
 
 # XNode功能说明
@@ -139,11 +139,11 @@ public static class NodeDataCache {
 
 
 Node 相关内容
-<center> <img src="01.assets/d6.drawio.png"></center>
+<center> <img src="../01.assets/d6.drawio.png"></center>
 
 NodePort 相关内容
 
-<center> <img src="01.assets/d7.drawio.png"></center>
+<center> <img src="../01.assets/d7.drawio.png"></center>
 
 
 # XNode运行时

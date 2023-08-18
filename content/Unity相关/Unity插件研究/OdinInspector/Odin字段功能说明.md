@@ -15,7 +15,7 @@ Odin的OdinAttributeOverview中对字段已经进行了详细的说明。每个�
 
 ValueDropDown字段属性给Inspector中的对应字段栏目提供了一个下拉菜单UI。通过下拉菜单中的选项可以给字段赋值。简单示例如下：
 
-<img src="Odin字段功能说明assets/odin_key_1.png">
+<img src="../Odin字段功能说明assets/odin_key_1.png">
 ```CSharp
 [ValueDropdown("drop_down_list")]
 public int value_drop_down;
@@ -39,7 +39,7 @@ ValueDropdown属性中的ValuesGetter字段指明了下拉列表中的项目内�
 
 除了可以修饰普通的属性字段外，还可以修饰列表类型字段，此时添加操作中的数值会变成下拉列表形式。简单示例如下：
 
-<img src="Odin字段功能说明assets/odin_key_2.png">
+<img src="../Odin字段功能说明assets/odin_key_2.png">
 
 ```CSharp
 [ValueDropdown("drop_down_list")]
@@ -56,7 +56,7 @@ private IEnumerable drop_down_list = new ValueDropdownList<int>
 <font size = 4>**备注事项**</font>
 
 * 使用ValueDropdown字段功能时。可直接用数据结构指定下拉列表。此时目标数据结构实际只会调用一次构造。虽然其列表显示是不同实例，且持久化后实际是不同对象。但是目标下拉列表中的数据实际只会构造一次，简单情况如下。
-<img src="Odin字段功能说明assets/odin_key_3.png">
+<img src="../Odin字段功能说明assets/odin_key_3.png">
 
 ```CSharp
 [LabelText("效果列表")]
@@ -99,7 +99,7 @@ Button字段属性主要给Inspector中的对应字段栏目提供了按钮UI，
 <font size = 4>**备注事项**</font>
 
 * 除了文档中情况，实际上Button也可以修饰有返回值的函数，当修饰该类型函数时，实际会出现一个Invoke按钮，相当于调用该函数。并且点击调用后，返回值会以Result的形式，经过Odin序列化呈现在InspectorUI当中。简单如下：
-<img src="Odin字段功能说明assets/odin_key_4.png">
+<img src="../Odin字段功能说明assets/odin_key_4.png">
 
 ```CSharp
 [Button]

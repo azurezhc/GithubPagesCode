@@ -3,7 +3,7 @@
 Odin是一个Unity插件。根据官网介绍，器主要目的是使得用户可以享受强大，可自定义，用户友好的编辑器，而不写一行编辑器代码。即Odin实际是一个编辑器扩展插件，来方便做一些编辑器扩展。
 
 当安装Odin插件后，会在菜单栏Tools中增加一个OdinInpsector选项。
-<img src="assets/odin_start_1.png">
+<img src="../assets/odin_start_1.png">
 
 通过GettingStarted可以入门编辑器内容。
 
@@ -26,7 +26,7 @@ https://odininspector.com/tutorials/using-attributes/simple-attribute-examples
 
 在Unity的OdinAttributesOverview中有所有Attributes的分类使用和说明。
 
-<img src="assets/odin_start_2.png">
+<img src="../assets/odin_start_2.png">
 
 
 在此只根据官方教程，介绍一些基础Attributes以及规则。经验性总结放在后面挖掘。
@@ -52,7 +52,7 @@ public void RandomName()
 
 ```
 
-<img src="assets/odin_start_3.png">
+<img src="../assets/odin_start_3.png">
 
 
 * 可以用Group来完全修改布局方式
@@ -71,7 +71,7 @@ public float Health;
 public float Damage;
 ```
 
-<img src="assets/odin_start_4.png">
+<img src="../assets/odin_start_4.png">
 
 * 有很多属性可以来引用其他属性内容，方法等来扩展编辑器行为。
 
@@ -95,7 +95,7 @@ private void RemoveGUID(int index)
 }
 ```
 
-<img src="assets/odin_start_5.png">
+<img src="../assets/odin_start_5.png">
 
 
 剩下官方介绍了一些常用的属性方式
@@ -130,7 +130,7 @@ public class MyCustomEditorWindow : OdinEditorWindow
     public string Hello;
 }
 ```
-<img src="assets/odin_window_1.png">
+<img src="../assets/odin_window_1.png">
 
 对于面板的内容可以简单的通过Attributes来设计，配置。
 
@@ -156,7 +156,7 @@ Odin的Dictionary再2018版本后因为prefab改动。导致prefab的序列化�
 
 目前发现的是，对于场景中的物体，用Odin设置Dictionary中数值后，在运行游戏中并不会生效。不论该物体是否与Prefab相关联。
 
-<img src="assets/odin_record_1.png">
-<img src="assets/odin_record_2.png">
+<img src="../assets/odin_record_1.png">
+<img src="../assets/odin_record_2.png">
 
 但是对于ScriptableObject对象Dictionary任然生效可以用来做数据设置

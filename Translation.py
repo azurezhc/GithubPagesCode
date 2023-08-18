@@ -16,10 +16,11 @@ pattern = re.compile(r'<img src\s*=(.*?)>')
 def ReplaceImgPath(content):
     print(content)
     image_path = content.group(1)
-    if image_path.startswith('"../'):
-        return content
-    else:
-        return '<img src="../' + image_path[1:-1] + '">'
+    image_path = image_path.strip().strip('"')
+    if image_path.startswith('../'):
+        return content.group()
+    
+    return '<img src="../' + image_path + '">'
 
 
 for dirpath, dirname, filenames in os.walk(rootdir):
