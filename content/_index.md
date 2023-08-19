@@ -25,5 +25,4 @@ draft: false
 
 相关内容可以参看文章目录中是否有你感兴趣的东西。
 
-欢迎各位在github上提交issue，或者发邮件跟我讨论。
-
+欢迎各位在[Github](https://github.com/azurezhc/GithubPagesCode)上提交issue，或者发邮件跟我讨论。
