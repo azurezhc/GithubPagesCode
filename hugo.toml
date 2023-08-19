@@ -12,6 +12,9 @@ languageCode = "zh-CN"
 languageName = "简体中文"
 # 是否包括中日韩文字
 hasCJKLanguage = true
+# 文件路径 小写转换
+disablePathToLower = true
+
 
 # 作者配置
 [author]
