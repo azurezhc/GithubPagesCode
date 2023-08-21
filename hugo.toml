@@ -50,8 +50,8 @@ disablePathToLower = true
 
 
 [params]
-  title = "azurezhc的游戏开发人生"
-  description = "azurezhc记录其游戏开发人生的博客"
+  title = "一个小博客"
+  description = "一个热爱游戏的平凡程序"
 
   [params.header]
     [params.header.title]
@@ -59,8 +59,8 @@ disablePathToLower = true
 
   [params.home]
     [params.home.profile]
-      title = "游戏开发博客"
-      subtitle = "这里是azurezhc记录其游戏开发人生的博客"
+      title = "一个小博客"
+      subtitle = "一个热爱游戏的平凡程序"
       typeit = false
 
   [params.page]
