@@ -88,8 +88,13 @@ disablePathToLower = true
       subtitle = "一个热爱游戏的平凡程序"
       typeit = false
 
+
   # 页面全局配置
   [params.page]
+    hiddenFromHomePage = true
+
+    [params.page.share]
+      enable = false 
     [params.page.math] 
       enable = true
     [params.page.toc]
