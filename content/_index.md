@@ -1,6 +1,6 @@
 ---
 title: "_Index"
-date: 2023-08-18T10:31:01+08:00
+date: 2023-08-18
 draft: false
 ---
 
