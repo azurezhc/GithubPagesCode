@@ -47,18 +47,23 @@ date: 2023-08-25
 
 这几节主要介绍了以下几个问题：
 
-* EU(Element Uniqueness)
-  * 任意给定一组实数，判断所有元素是否都是不同的。或者说判断是否存在两个元素相等。
-* Min-Gap
-  * 给定一组实数求元素之间的最短距离。
-* Max-Gap
-  * 给定一组实数，求元素之间的最大距离。
-* IEU(Integer Element Uniqueness)
-  * EU问题的整数版本，给定一组整数，判断元素是否都是不同的。
-* Interval Intersection Detection
-  * 区间相交检测
+> * EU(Element Uniqueness)\
+> 任意给定一组实数，判断所有元素是否都是不同的。或者说判断是否存在两个元素相等。
+  
+
+> * Min-Gap\
+> 给定一组实数求元素之间的最短距离。
 
 
+> * Max-Gap\
+> 给定一组实数，求元素之间的最大距离。
+
+> * IEU(Integer Element Uniqueness)\
+> EU问题的整数版本，给定一组整数，判断元素是否都是不同的。
+
+
+> * Interval Intersection Detection\
+> 区间相交检测
 
 <font size = 4> **EU**</font>
 

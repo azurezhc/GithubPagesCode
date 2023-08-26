@@ -41,7 +41,7 @@ date: 2023-08-25
 画廊看守问题的描述：
 
 > 有一个2D多边形区域，现在需要在其中布置360度视角的哨兵，问至少要多少个哨兵才能覆盖整个多边形区域内部。\
-> 用数学语言描述就是，设$P$是任意一个多边形，求$G(P)=min\{|X|\mid X\ dominates\ P\}$的值是多少
+> 用数学语言描述就是，设$P$是任意一个多边形，求$G(P)=min\set{\vert{}X\vert\mid X\ dominates\ P}$的值是多少
 
 这里有一些显然的结论：
 
@@ -260,8 +260,13 @@ $c$会在对面侧，注意此时，根据前面描述：栈中的点都是在�
 * 然后遇到7，8，9。这些都是End Event。一次标志着，5右，6右，6左梯形的消亡。
 
 
-> 这里其实有个细节问题。对于Staglamite的处理过程，并没有完全处理Stalactite。可以看上面处理过程，任然有一个stalactite导致不是单调多边形。\
-> 对于Stalactite来说，可以明显看到，如果一路只遇到End Event也应该要将Stalactite跟其连接，这说明还有情况为处理。实际上对于Stalactite来说，其应该是要找一个下梯形支撑点。按照上面情况分类，这个可以由End Vertext，Left Adjaccency，Right Adjaccency，Stalagmite来提供。
+{{< admonition question "思考" >}}
+
+这里其实有个细节问题。对于Staglamite的处理过程，并没有完全处理Stalactite。可以看上面处理过程，任然有一个stalactite导致不是单调多边形。
+
+对于Stalactite来说，可以明显看到，如果一路只遇到End Event也应该要将Stalactite跟其连接，这说明还有情况为处理。实际上对于Stalactite来说，其应该是要找一个下梯形支撑点。按照上面情况分类，这个可以由End Vertext，Left Adjaccency，Right Adjaccency，Stalagmite来提供。
+
+{{< /admonition >}}
 
 **<font size = 4>算法分析</font>**
 
