@@ -1,3 +1,9 @@
+---
+title: "计算几何课程"
+draft: false
+date: 2023-08-27
+---
+
 # 08截窗查询(Windowing Query)
 
 [计算几何-笔记目录](./计算几何-笔记大纲.md)
