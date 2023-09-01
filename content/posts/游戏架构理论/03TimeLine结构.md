@@ -1,5 +1,7 @@
 ---
-layout: default
+title: "游戏架构理论"
+draft: false
+date: 2023-09-01
 ---
 
 # TimeLine结构
@@ -47,7 +49,7 @@ public class SingleTimer
 
 上面结构也可以通过下图来表述：
 
-<center><img src="../TimeLine结构.assets/d1.drawio.png"></center>
+<center><img src="../03TimeLine结构.assets/d1.drawio.png"></center>
 
 如代码结构所示，调用静态函数接口`Timer.AddTimer`即可实现在某个时间之后固定调用某个函数功能，而通过该函数回调就可以实现意逻辑的触发结构。但也可以注意到`TimerManager`是一个静态单例类，存在一个Dictionary结构来存放所有的Timer结构。
 
@@ -77,7 +79,7 @@ public class SingleTimer
 
 但是累计时间似乎又是计算`pass_time`跨过`total_time`的必要部分。这相当于去计算$\sum_i^n{}t_i>T$这件事情，但是可以简单发现一件事情，如果每次更新时间是一个固定数值即$t_i=t_0$那么可以简单计算出$n=T/t_0$。这相当于计算出第$n$次Tick的时候触发该事件，省略了之前累计时间的开销。这个结构可以用下图表示：
 
-<center><img src="../TimeLine结构.assets/d2.drawio.png"></center>
+<center><img src="../03TimeLine结构.assets/d2.drawio.png"></center>
 
 
 * 每次Tick前进一格，查询该槽位中对象数量。
@@ -97,7 +99,7 @@ public class SingleTimer
 通常来讲时间轮，会形成一个轮的形式，而不是一个线的形式。这是因为，如果是单纯一个线，因为每次tick的$t_0$很小。那么其槽位将会非常多，假设$t_0=1s$，那么即时1天小时，也需要86400个槽位。更别说，对于游戏来说定时要求会更精细。那么槽位会非常多，而这些槽位实际上也是要内存记录的。
 怎么解决这个问题？其实就跟建立时间轮的思路一样，也跟现代记录时间的方法对应。对于很久以后的回调，我们不用计算的非常细致，只有在接近的时候，才有仔细划分的必要。结构可以用下图标识：
 
-<center><img src="../TimeLine结构.assets/d3.drawio.png"></center>
+<center><img src="../03TimeLine结构.assets/d3.drawio.png"></center>
 
 
 所以其实思想非常简单。就是提前计算做好映射来减少Tick累计记时，而HighLevel的想法就是对于很久以后的事情，现在并不需要考虑特别细致。
@@ -111,7 +113,7 @@ public class SingleTimer
 * 但是也因为其是全局的，单纯功能封装。所以不知道什么时候该取消回调。而每个回调结构中，实际存有一个跟逻辑回调关联的实例对象。这就导致一个问题，实例对象的生命周期，不由TimerManager管理，但是TimerManager会引用该对象。进而需要在对象生命结束时，手动移除TimerManager中的Timer，避免回调时触发错误逻辑，如下图。
 * TimerManager中关联的实例对象，遍布各个模块，这导致其基本不可能是内存连续的。因为每个模块有自己的创建时机，创建流程，这些跟其他模块耦合肯定不大。这说明这些内存分配基本无法统一，这导致内存必定是散乱的。这
 
-<center><img src="../TimeLine结构.assets/d4.drawio.png"></center>
+<center><img src="../03TimeLine结构.assets/d4.drawio.png"></center>
 
 
 从上面可以看到，这样一个全局结构，注定的会导致每个使用TimerManager的模块，还要自己去移除相关的回调结构。这导致每个模块必须记得去`Timer.RemoveTimer`。如果不移除就会有潜在的trace风险。而根据经验来看，这种事情是经常发生的。
@@ -120,7 +122,7 @@ public class SingleTimer
 
 另一方面是，这样一个结构可以显然的变成局部结构。即每个相关模块持有一个这样的TimerManager结构，而不是全局TimerManager。如下图的结构也是一样可行的。
 
-<center><img src="../TimeLine结构.assets/d5.drawio.png"></center>
+<center><img src="../03TimeLine结构.assets/d5.drawio.png"></center>
 
 这样结构可以看到：
 
@@ -190,7 +192,7 @@ public class GM : MonoBehaviour
 
 所以简单一想，可以知道累计时间的方式更适合。实际上这说明Timer结构实际可以分成两部分结构来运行，如下图。
 
-<center><img src="../TimeLine结构.assets/d6.drawio.png"></center>
+<center><img src="../03TimeLine结构.assets/d6.drawio.png"></center>
 
 其实可以注意到这一步实际上可以理解为最早的TimerManager扩展版：原来的Timer中只包含一个结束时回调逻辑，把这种Timer理解为某一类timer。其结构恰好非常固定，而我们可以添加跟多种类的Timer，例如每次累计时间，都会调用回调函数并固定传入经过时间的Timer，此即可以实现时间轴结构。
 
@@ -212,7 +214,7 @@ public class GM : MonoBehaviour
 
 
 
-<center><img src="../TimeLine结构.assets/d7.drawio.png"></center>
+<center><img src="../03TimeLine结构.assets/d7.drawio.png"></center>
 
 
 * 我们会累计每次Tick时间间隔，记录为$t$，当$t$超过槽位边界的时候减少该槽位值。形成槽位上的余数值$t'$，这相当于在该槽位中有一段。
