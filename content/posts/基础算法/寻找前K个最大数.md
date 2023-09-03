@@ -1,5 +1,7 @@
 ---
-layout: default
+title: "寻找前K个最大数"
+date: 2023-09-03
+draft: false
 ---
 
 
@@ -138,13 +140,3 @@ $$cn+(2/3)cn+(2/3)^2cn+\cdots+(2/3)^icn+\cdots=3cn=\Theta(n)$$
 其实可以看到，不论什么方式。这个问题最后落在的关键点都是一个问题。如何逐步的剔除那些非正确的数字。越快剔除的方法，其效率就越高。相对应的，如果能按照某个比例去剔除，那么他就会是一个线性算法。
 
 关于该算法在参考资料中的《算法设计技巧与分析》有详细的描述。
-
-# 参考资料
-
-随机算法与寻找第K小元素元素在下面的书籍中有详细的介绍。
-
-<div style = "float:left">《现代算法设计与分析》</div>
-<div style = "text-align:right">[印] Sandeep Sen, Amit Kumar</div>
-
-<div style = "float:left">《算法设计技巧与分析》</div>
-<div style = "text-align:right">[沙特] M. H. Alsuwaiyel</div>

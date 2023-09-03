@@ -1,3 +1,7 @@
 *.drawio
 public
 resources
+
+# ignore self cloud sync drafts
+
+content/posts/_Drafts
