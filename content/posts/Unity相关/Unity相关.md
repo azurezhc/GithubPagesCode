@@ -1,5 +1,7 @@
 ---
-layout: default
+title: "Unity相关"
+date: 2023-10-20
+draft: false
 ---
 
 
@@ -10,6 +12,13 @@ layout: default
 积累Unity相关技术，方便自己将来做Unity相关深入开发。
 
 
-# Unit插件
+# Unity插件
 
 * [<font size=4>XNode介绍</font>](./Unity插件研究/XNode介绍.md)
+
+
+# Unity Editor扩展
+
+* [<font size=4>UnityEditor扩展</font>](./UnityEditor扩展/UnityEditor扩展大纲.md)
+
+# Unity Shader学习
