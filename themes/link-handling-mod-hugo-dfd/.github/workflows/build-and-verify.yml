@@ -1,0 +1,108 @@
+---
+name: build-and-verify
+on:
+  pull_request:
+    types:
+      - assigned
+      - opened
+      - synchronize
+      - reopened
+    branches:
+      - main
+      - 'v[0-9]*'
+  push:
+    branches:
+      - main
+      - 'v[0-9]*'
+jobs:
+  check-source-code-validity:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: "Verify content formatting validity (Markdown lint)"
+        uses: DavidAnson/markdownlint-cli2-action@v5
+        with:
+          globs: |
+            README.md
+            exampleSite/content/*/*.md
+            exampleSite/content/**/*.md
+  build-unminified-site:
+    needs: check-source-code-validity
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        hugo: ["0.80.0", "0.88.1", "0.96.0", "latest"]
+    steps:
+      - name: "Build Site with Hugo and Audit"
+        uses: danielfdickinson/build-audit-action-hugo-dfd@v0.2
+        with:
+          hugo-version: ${{ matrix.hugo }}
+          upload-site-as: unminified-site-${{ matrix.hugo }}
+          use-lfs: false
+          source-directory: exampleSite
+  validate-unminified-html:
+    needs: build-unminified-site
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        hugo: ["0.80.0", "0.88.1", "0.96.0", "latest"]
+    steps:
+      - uses: actions/checkout@v3
+      - name: "Validate exampleSite HTML"
+        uses: danielfdickinson/validate-html-action-hugo-dfd@v0.2
+        with:
+          download-site-as: unminified-site-${{ matrix.hugo }}
+  check-links:
+    needs: build-unminified-site
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        hugo: ["0.80.0", "0.88.1", "0.96.0", "latest"]
+    steps:
+      - name: "Check internal links"
+        uses: danielfdickinson/link-check-action-hugo-dfd@v0.2
+        with:
+          canonical-root: https://example.com/
+          download-site-as: unminified-site-${{ matrix.hugo }}
+          upload-logs-as: check-links-failure
+          upload-logs-retention: 3
+          skip-check-patterns: "https://www.facebook.com/sharer.php https://www.linkedin.com/shareArticle https://linkedin.com/shareArticle https://twitter.com/share https://www.pexels.com https://pixabay.com http://doi.org/ https://doi.org/ https://www.nature.com/ https://arxiv.org/ https://cbc.ca https://www.cbc.ca /a-nonexistant-internal-link example.com example.net"
+  build-minified-site:
+    needs:
+      - check-source-code-validity
+    runs-on: ubuntu-20.04
+    if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
+    steps:
+      - name: "Build Site with Hugo and Audit"
+        uses: danielfdickinson/build-audit-action-hugo-dfd@v0.2
+        with:
+          base-url: https://link-handling-mod.wildtechgarden.ca/
+          upload-site-as: minified-site
+          use-lfs: true
+          source-directory: exampleSite
+  deploy-minified-site:
+    needs:
+      - build-minified-site
+      - validate-unminified-html
+      - check-links
+    environment: production
+    runs-on: ubuntu-20.04
+    if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: minified-site
+      - name: "Extract site and configs"
+        shell: bash
+        env:
+          DOWNLOAD_SITE_FILENAME: hugo-site.tar
+        run: tar -xf "${DOWNLOAD_SITE_FILENAME}"
+      - name: "Deploy Minified Site"
+        uses: wlixcc/SFTP-Deploy-Action@v1.0
+        with:
+          local_path: './public/*'
+          port: ${{ secrets.DEPLOY_SFTP_PORT }}
+          server: ${{ secrets.DEPLOY_SFTP_HOSTNAME }}
+          ssh_private_key: ${{ secrets.DEPLOY_SFTP_PRIVATE_KEY }}
+          remote_path: ${{ secrets.DEPLOY_SFTP_REMOTE_PATH }}
+          username: ${{ secrets.DEPLOY_SFTP_USERNAME }}

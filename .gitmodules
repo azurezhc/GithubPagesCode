@@ -1,8 +1,0 @@
-[submodule "LoveIt"]
-	path = themes/LoveIt
-	url = https://github.com/dillonzq/LoveIt.git
-
-
-[submodule "link-handling-mod-hugo-dfd"]
-	path = themes/link-handling-mod-hugo-dfd
-	url = https://github.com/danielfdickinson/link-handling-mod-hugo-dfd.git

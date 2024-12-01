@@ -1,0 +1,42 @@
+// ==============================
+// Custom style
+// 自定义样式
+// ==============================
+
+
+.page.single h1 {
+  color: rgb(0, 0, 0);
+  font-family: 微软雅黑, 宋体, 黑体, Arial;
+  font-weight: bold;
+  line-height: 1.3;
+  border-bottom: solid;
+  border-bottom-color: rgb(130, 188, 235);
+  padding: 7px;
+  margin: 18px 0px 18px -5px !important;
+}
+
+
+.page.single h2 {
+  box-shadow: rgb(95, 90, 75) 0px 0px 0px 1px, rgba(10, 10, 0, 0.5) 1px 1px 6px 1px;
+  color: rgb(255, 255, 255);
+  font-family: 微软雅黑, 宋体, 黑体, Arial;
+  font-weight: bold;
+  line-height: 1.3;
+  text-shadow: rgb(34, 34, 34) 2px 2px 3px;
+  background: rgb(43, 102, 149);
+  border-radius: 6px;
+  border-width: initial;
+  border-style: none;
+  border-color: initial;
+  border-image: initial;
+  padding: 7px;
+  margin: 18px 0px 18px -5px !important;
+}
+
+
+
+
+hr {
+  border: none;
+  border-bottom: 2px dashed #7a7a7a !important;
+}
