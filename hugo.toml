@@ -1,0 +1,158 @@
+baseURL = "http://azurezhc.github.io/"
+
+# 更改使用 Hugo 构建网站时使用的默认主题
+theme = "LoveIt"
+
+# 网站标题
+title = "azurezhc的游戏开发人生"
+
+# 网站语言, 仅在这里 CN 大写 ["en", "zh-CN", "fr", "pl", ...]
+languageCode = "zh-CN"
+# 语言名称 ["English", "简体中文", "Français", "Polski", ...]
+languageName = "简体中文"
+# 是否包括中日韩文字
+hasCJKLanguage = true
+# 文件路径 小写转换
+disablePathToLower = true
+
+
+# 作者配置
+[author]
+  name = "azurezhc"
+  email = "azurezhc@gmail.com"
+  link = ""
+
+# Markup related configuration in Hugo
+# Hugo 解析文档的配置
+[markup]
+  # Syntax Highlighting (https://gohugo.io/content-management/syntax-highlighting)
+  # 语法高亮设置 (https://gohugo.io/content-management/syntax-highlighting)
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = false
+    lineNos = true
+    lineNumbersInTable = true
+    # false is a necessary configuration (https://github.com/dillonzq/LoveIt/issues/158)
+    # false 是必要的设置 (https://github.com/dillonzq/LoveIt/issues/158)
+    noClasses = false
+  # Goldmark is from Hugo 0.60 the default library used for Markdown
+  # Goldmark 是 Hugo 0.60 以来的默认 Markdown 解析库
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      definitionList = true
+      footnote = true
+      linkify = true
+      strikethrough = true
+      table = true
+      taskList = true
+      typographer = true
+    [markup.goldmark.extensions.passthrough]
+      enable = true
+      delimiters.block = [
+        ["\\[", "\\]"],
+        ["$$", "$$"]
+      ]
+      delimiters.inline = [
+        ["\\(", "\\)"],
+        ['$', '$']
+      ]
+    [markup.goldmark.renderer]
+      # whether to use HTML tags directly in the document
+      # 是否在文档中直接使用 HTML 标签
+      unsafe = true
+  # Table Of Contents settings
+  # 目录设置
+  [markup.tableOfContents]
+    startLevel = 1
+    endLevel = 3
+
+[menu]
+  [[menu.main]]
+    weight = 1
+    identifier = "program articles"
+    # you can add extra information before the name (HTML format is supported), such as icons
+    # 你可以在名称 (允许 HTML 格式) 之前添加其他信息, 例如图标
+    pre = ""
+    # you can add extra information after the name (HTML format is supported), such as icons
+    # 你可以在名称 (允许 HTML 格式) 之后添加其他信息, 例如图标
+    post = ""
+    name = "程序"
+    url = "/程序目录"
+    # title will be shown when you hover on this menu link
+    # 当您将鼠标悬停在此菜单链接上时, 将显示标题
+    title = ""
+  [[menu.main]]
+    weight = 2
+    identifier = "math articles"
+    # you can add extra information before the name (HTML format is supported), such as icons
+    # 你可以在名称 (允许 HTML 格式) 之前添加其他信息, 例如图标
+    pre = ""
+    # you can add extra information after the name (HTML format is supported), such as icons
+    # 你可以在名称 (允许 HTML 格式) 之后添加其他信息, 例如图标
+    post = ""
+    name = "数学"
+    url = "/数学目录"
+    # title will be shown when you hover on this menu link
+    # 当您将鼠标悬停在此菜单链接上时, 将显示标题
+    title = ""
+  [[menu.main]]
+    weight = 3
+    identifier = "design articles"
+    # you can add extra information before the name (HTML format is supported), such as icons
+    # 你可以在名称 (允许 HTML 格式) 之前添加其他信息, 例如图标
+    pre = ""
+    # you can add extra information after the name (HTML format is supported), such as icons
+    # 你可以在名称 (允许 HTML 格式) 之后添加其他信息, 例如图标
+    post = ""
+    name = "设计"
+    url = "/设计目录"
+    # title will be shown when you hover on this menu link
+    # 当您将鼠标悬停在此菜单链接上时, 将显示标题
+    title = ""
+  [[menu.main]]
+    weight = 4
+    identifier = "misc articles"
+    # you can add extra information before the name (HTML format is supported), such as icons
+    # 你可以在名称 (允许 HTML 格式) 之前添加其他信息, 例如图标
+    pre = ""
+    # you can add extra information after the name (HTML format is supported), such as icons
+    # 你可以在名称 (允许 HTML 格式) 之后添加其他信息, 例如图标
+    post = ""
+    name = "杂谈"
+    url = "/杂谈目录"
+    # title will be shown when you hover on this menu link
+    # 当您将鼠标悬停在此菜单链接上时, 将显示标题
+    title = ""
+
+
+[params]
+  title = "一个小博客"
+  description = "一个热爱游戏的平凡程序"
+  dateFormat = ""
+  [params.header]
+    [params.header.title]
+      name = "主页"
+
+  [params.home]
+    [params.home.profile]
+      title = "一个小博客"
+      subtitle = "一个热爱游戏的平凡程序"
+      typeit = false
+
+
+  # 页面全局配置
+  [params.page]
+    hiddenFromHomePage = true
+
+    [params.page.share]
+      enable = false 
+    [params.page.math] 
+      enable = true
+    [params.page.toc]
+      enable = true
+      keepStatic = false
+      auto = false
+
+[module]
+  [[module.imports]]
+    path = "link-handling-mod-hugo-dfd"
